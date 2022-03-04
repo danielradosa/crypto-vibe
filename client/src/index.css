@@ -14,7 +14,7 @@ body {
 }
 
 .gradient-bg-welcome {
-  background-color:#fa897b;
+  background-color:#000000;
   background-image: 
     radial-gradient(at 0% 0%, #86e3ce 0, transparent 50%), 
     radial-gradient(at 50% 0%, #ffdd94 0, transparent 35%), 
@@ -74,7 +74,7 @@ body {
 
 .text-gradient {
   background-color: #fff;
-  background-image: radial-gradient(at 4% 36%, rgb(214, 214, 214) 0, transparent 53%), radial-gradient(at 100% 60%, rgb(61, 61, 61) 0, transparent 50%);
+  background-image: radial-gradient(at 4% 36%, rgb(214, 214, 214) 0, transparent 53%), radial-gradient(at 100% 60%, rgb(172, 172, 172) 0, transparent 50%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

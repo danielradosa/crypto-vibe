@@ -4,12 +4,12 @@ const App = () => {
   return (
     <div className="min-h-screen">
       <div className="gradient-bg-welcome">
-        <Navbar></Navbar>
-        <Welcome></Welcome>
+        <Navbar />
+        <Welcome />
       </div>
-      <Services></Services>
-      <Transactions></Transactions>
-      <Footer></Footer>
+      <Services />
+      <Transactions />
+      <Footer />
     </div>
   )
 }
