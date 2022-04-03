@@ -29,4 +29,5 @@ jobs:
       - name: Run a multi-line script
         run: |
           cd smart_contract
+          npm install
           truffle test
