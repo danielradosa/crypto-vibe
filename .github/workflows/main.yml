@@ -30,4 +30,6 @@ jobs:
         run: |
           cd smart_contract
           npm install
+          npm update
+          npm audit fix --force
           truffle test
