@@ -47,6 +47,7 @@ jobs:
           npm install
           npm install -g truffle
           npm install -g ganache-cli ganache
+          npm install -D web3
           truffle compile
           truffle migrate
           truffle test
