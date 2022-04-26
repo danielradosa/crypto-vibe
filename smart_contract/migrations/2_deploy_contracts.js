@@ -3,7 +3,7 @@ const MetaCoin = artifacts.require("MetaCoin");
 const Transactions = artifacts.require("Transactions");
 
 module.exports = function(deployer) {
-  deployer.deploy(ConvertLib);
+ deployer.deploy(ConvertLib);
   deployer.link(ConvertLib, MetaCoin);
   deployer.deploy(MetaCoin);
   deployer.deploy(Transactions);
