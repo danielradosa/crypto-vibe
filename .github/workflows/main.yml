@@ -50,4 +50,4 @@ jobs:
           npm install -D web3
           truffle compile
           truffle migrate
-          truffle test
+          truffle test --network ethereum
