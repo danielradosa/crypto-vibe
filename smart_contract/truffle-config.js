@@ -31,6 +31,7 @@ module.exports = {
    * run `develop` or `test`. You can ask a truffle command to use a specific
    * network from the command line, e.g
    *
+   * $ truffle test --network <network-name>
    */
 
   networks: {
@@ -41,9 +42,9 @@ module.exports = {
     // options below to some value.
     //
     //development: {
-    //  host: "127.0.0.1",  // Localhost (default: none)         
-    //  port: 8545,         // Standard Ethereum port (default: none)
-   //   network_id: "*",    // Any network (default: none)
+   //   host: "127.0.0.1",  // Localhost (default: none)         
+   //   port: 8545,         // Standard Ethereum port (default: none)
+    //  network_id: "*",    // Any network (default: none)
    // },
     // Another network with more advanced options...
     // advanced: {
@@ -74,7 +75,7 @@ module.exports = {
 
   // Set default mocha options here, use special reporters etc.
   mocha: {
-    timeout: 100000
+    // timeout: 100000
   },
 
   // Configure your compilers
