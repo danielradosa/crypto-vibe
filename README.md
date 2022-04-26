@@ -1,3 +1,3 @@
 # crypto-vibe
 - Blockchain web 3.0 application
-- Live version: https://dnlrds.xyz/cryptovibe
+- Live version: https://dnlrds.xyz/crypto-vibe
