@@ -31,7 +31,6 @@ module.exports = {
    * run `develop` or `test`. You can ask a truffle command to use a specific
    * network from the command line, e.g
    *
-   * $ truffle test --network <network-name>
    */
 
   networks: {
@@ -75,7 +74,7 @@ module.exports = {
 
   // Set default mocha options here, use special reporters etc.
   mocha: {
-    // timeout: 100000
+    timeout: 100000
   },
 
   // Configure your compilers
