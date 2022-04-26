@@ -17,17 +17,9 @@ const Navbar = () => {
 
     return (
         <nav className='w-full flex md:justify-center justify-between items-center p-4'>
-            <div className='md:flex-[0.5] flex-initial justify-center items-center my-6'>
+            <div className='md:flex-[1] flex-initial justify-center items-center my-6'>
                 <img src={logo} alt="logo" className='w-32 cursor-pointer' />
             </div>
-            <ul className='text-white md:flex hidden list-none flex-row justify-between items-center flex-initial'>
-                {["Market", "Exchange", "Tutorials", "Wallets"].map((item, index) => (
-                    <NavbarItem key={item + index} title={item} />
-                ))}
-                <li className='bg-[#86e3ce] py-2 px-7 text-black mx-4 rounded-full cursor-pointer hover:bg-[#ffffff]'>
-                    Login
-                </li>
-            </ul>
             <div className="flex relative">
                     {toggleMenu
                     ? <AiOutlineClose fontSize={28} className="text-white md:hidden cursor-pointer" 

@@ -15,13 +15,11 @@ const createEthereumContract = () => {
   return transactionsContract;
 };
 
-export const TransactionProvider = ({ children }) => {
-  const [currentAccount, setCurrentAccount] = useState("");
+export const TransactionsProvider = ({ children }) => {
   const [formData, setformData] = useState({ addressTo: "", amount: "", keyword: "", message: "" });
+  const [currentAccount, setCurrentAccount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [transactionCount, setTransactionCount] = useState(
-    localStorage.getItem("transactionCount")
-  );
+  const [transactionCount, setTransactionCount] = useState(localStorage.getItem("transactionCount"));
   const [transactions, setTransactions] = useState([]);
 
   const handleChange = (e, name) => {
@@ -30,27 +28,26 @@ export const TransactionProvider = ({ children }) => {
 
   const getAllTransactions = async () => {
     try {
-      if (!ethereum) return alert("Please install metamask");
-      const transactionContract = createEthereumContract();
+      if (ethereum) {
+        const transactionsContract = createEthereumContract();
 
-      const availableTransactions =
-        await transactionContract.getAllTransactions();
+        const availableTransactions = await transactionsContract.getAllTransactions();
 
-      const structuredTransactions = availableTransactions.map(
-        (transaction) => ({
+        const structuredTransactions = availableTransactions.map((transaction) => ({
           addressTo: transaction.receiver,
           addressFrom: transaction.sender,
-          timestamp: new Date(
-            transaction.timestamp.toNumber() * 1000
-          ).toLocaleString(),
+          timestamp: new Date(transaction.timestamp.toNumber() * 1000).toLocaleString(),
           message: transaction.message,
           keyword: transaction.keyword,
-          amount: parseInt(transaction.amount._hex) / 10 ** 18,
-        })
-      );
+          amount: parseInt(transaction.amount._hex) / (10 ** 18)
+        }));
 
-      console.log(structuredTransactions);
-      setTransactions(structuredTransactions);
+        console.log(structuredTransactions);
+
+        setTransactions(structuredTransactions);
+      } else {
+        console.log("Ethereum is not present");
+      }
     } catch (error) {
       console.log(error);
     }
