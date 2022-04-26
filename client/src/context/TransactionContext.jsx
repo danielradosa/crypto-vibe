@@ -17,7 +17,12 @@ const createEthereumContract = () => {
 
 export const TransactionProvider = ({ children }) => {
   const [currentAccount, setCurrentAccount] = useState("");
-  const [formData, setformData] = useState({ addressTo: "", amount: "", keyword: "", message: "" });
+  const [formData, setformData] = useState({
+    addressTo: "",
+    amount: "",
+    keyword: "",
+    message: "",
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [transactionCount, setTransactionCount] = useState(
     localStorage.getItem("transactionCount")
@@ -30,27 +35,26 @@ export const TransactionProvider = ({ children }) => {
 
   const getAllTransactions = async () => {
     try {
-      if (!ethereum) return alert("Please install metamask");
-      const transactionContract = createEthereumContract();
+      if (ethereum) {
+        const transactionsContract = createEthereumContract();
 
-      const availableTransactions =
-        await transactionContract.getAllTransactions();
+        const availableTransactions = await transactionsContract.getAllTransactions();
 
-      const structuredTransactions = availableTransactions.map(
-        (transaction) => ({
+        const structuredTransactions = availableTransactions.map((transaction) => ({
           addressTo: transaction.receiver,
           addressFrom: transaction.sender,
-          timestamp: new Date(
-            transaction.timestamp.toNumber() * 1000
-          ).toLocaleString(),
+          timestamp: new Date(transaction.timestamp.toNumber() * 1000).toLocaleString(),
           message: transaction.message,
           keyword: transaction.keyword,
-          amount: parseInt(transaction.amount._hex) / 10 ** 18,
-        })
-      );
+          amount: parseInt(transaction.amount._hex) / (10 ** 18)
+        }));
 
-      console.log(structuredTransactions);
-      setTransactions(structuredTransactions);
+        console.log(structuredTransactions);
+
+        setTransactions(structuredTransactions);
+      } else {
+        console.log("Ethereum is not present");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -93,7 +97,9 @@ export const TransactionProvider = ({ children }) => {
     try {
       if (!ethereum) return alert("Please install MetaMask.");
 
-      const accounts = await ethereum.request({ method: "eth_requestAccounts", });
+      const accounts = await ethereum.request({
+        method: "eth_requestAccounts",
+      });
 
       setCurrentAccount(accounts[0]);
       window.location.reload();
@@ -113,15 +119,22 @@ export const TransactionProvider = ({ children }) => {
 
         await ethereum.request({
           method: "eth_sendTransaction",
-          params: [{
-            from: currentAccount,
-            to: addressTo,
-            gas: "0x5208",
-            value: parsedAmount._hex,
-          }],
+          params: [
+            {
+              from: currentAccount,
+              to: addressTo,
+              gas: "0x5208",
+              value: parsedAmount._hex,
+            },
+          ],
         });
 
-        const transactionHash = await transactionsContract.addToBlockchain(addressTo, parsedAmount, message, keyword);
+        const transactionHash = await transactionsContract.addToBlockchain(
+          addressTo,
+          parsedAmount,
+          message,
+          keyword
+        );
 
         setIsLoading(true);
         console.log(`Loading - ${transactionHash.hash}`);
@@ -129,7 +142,8 @@ export const TransactionProvider = ({ children }) => {
         console.log(`Success - ${transactionHash.hash}`);
         setIsLoading(false);
 
-        const transactionsCount = await transactionsContract.getTransactionCount();
+        const transactionsCount =
+          await transactionsContract.getTransactionCount();
 
         setTransactionCount(transactionsCount.toNumber());
         window.location.reload();
