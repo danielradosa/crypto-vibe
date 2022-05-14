@@ -33,6 +33,48 @@ export const TransactionProvider = ({ children }) => {
     setformData((prevState) => ({ ...prevState, [name]: e.target.value }));
   };
 
+  const getBtcPrice = async () => {
+    try {
+      const response = await fetch(
+        "https://api.coindesk.com/v1/bpi/currentprice/BTC.json"
+      );
+      const data = await response.json();
+      const price = data.bpi.USD.rate;
+
+      return price;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getEthPrice = async () => {
+    try {
+      const response = await fetch(
+        "https://api.coindesk.com/v1/bpi/currentprice/ETH.json"
+      );
+      const data = await response.json();
+      const price = data.bpi.USD.rate;
+
+      return price;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getGrtPrice = async () => {
+    try {
+      const response = await fetch(
+        "https://api.coindesk.com/v1/bpi/currentprice/GRT.json"
+      );
+      const data = await response.json();
+      const price = data.bpi.USD.rate;
+
+      return price;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const getAllTransactions = async () => {
     try {
       if (ethereum) {
@@ -173,6 +215,9 @@ export const TransactionProvider = ({ children }) => {
         sendTransaction,
         handleChange,
         formData,
+        getBtcPrice,
+        getEthPrice,
+        getGrtPrice
       }}
     >
       {children}
