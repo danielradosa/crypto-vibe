@@ -1,7 +1,7 @@
-import { MarketComp } from "./components";
+import { Market } from "./components";
 
 const Markets = () => {
-  return <MarketComp />;
+  return <Market />;
 };
 
 export default Markets;
