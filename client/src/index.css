@@ -72,6 +72,12 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+.image-market {
+  display: block;
+  justify-content: center;
+  margin: 0 auto;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
