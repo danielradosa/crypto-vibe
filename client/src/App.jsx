@@ -13,8 +13,8 @@ const App = () => {
         <div className="gradient-bg-welcome">
           <Navbar />
           <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route exact path="/Markets" element={<Markets />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/Markets" element={<Markets />} />
           </Routes>
         </div>
         <Services />
